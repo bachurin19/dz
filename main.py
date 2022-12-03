@@ -4,15 +4,23 @@ class Student:
 		self.name = name
 		self.gladness = 50
 		self.progress = 0
+		self.money= 100
 		self.alive = True
 	def say_hello(self):
 		print('Hello!')
+	def work(self):
+		print('Time to work')
+		if self.money<20:
+		  self.gladness -= 2
+		  self.progress -= 4
+		  self.money +=10
 	def to_study(self):
 		print('Time to study')
 		if self.progress < 5:
 			self.gladness -= 4
 		self.progress += 2
 		self.gladness -= 1
+  
 	def to_sleep(self):
 		print('Time to sleep')
 		self.gladness += 2
@@ -20,22 +28,27 @@ class Student:
 		print('Rest time')
 		self.gladness += 5
 		self.progress -= 2
+		self.money -= 10
 	def is_alive(self):
-		if self.progress < -10:
-			print('You are bad')
-			self.alive = False
-		elif self.gladness <= 0:
-			print('Dead inside')
-			self.alive = False
-		elif self.progress > 50:
-			print('Amazing! You are so smart')
-			self.alive = False
+                if self.progress < -10:
+                        print('You are bad')
+                        self.alive = False
+                elif self.gladness <= 0:
+                        print('Dead inside')
+                        self.alive = False
+                elif self.money>100:
+                        print('You are rich!')
+                        self.alive = False
+                elif self.progress > 50:
+                        print('Amazing! You are so smart')
+                        self.alive = False
+
 	def statics(self):
-		print('Gladness: ', self.gladness, 'Progress: ',self.progress)
+		print('Gladness: ', self.gladness, 'Progress: ',self.progress,'Money:',self.money)
 	def live(self, day):
 		day = "Day " + str(day) + " of " + self.name + " life"
 		print(day)
-		live_cube = randint(1,4)
+		live_cube = randint(1,5)
 		if live_cube == 1:
 			self.to_study()
 		elif live_cube == 2:
@@ -44,6 +57,9 @@ class Student:
 			self.to_chill()
 		elif live_cube == 4:
 			self.say_hello()
+		elif live_cube == 5:
+                        self.work()
+                        
 		self.statics()
 		self.is_alive()
 
